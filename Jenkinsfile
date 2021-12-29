@@ -29,8 +29,7 @@ options {
             stage ('init') {
                 steps {
                     sh "mkdir -p Rewardz/"
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'Rewardz/']], userRemoteConfigs: [[url: 'https://github.com/hiashutosh/test1.git']]])
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'Rewardz/']], userRemoteConfigs: [[url: 'https://github.com/hiashutosh/test2.git']]])
+                    checkout([$class: 'GitSCM', branches: [[name: '*/testbranch2']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'Rewardz/']], userRemoteConfigs: [[url: 'https://github.com/hiashutosh/test1.git']]])
                     // checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'Rewardz']], userRemoteConfigs: [[url: 'https://github.com/hiashutosh/test2.git'], [url: 'https://github.com/hiashutosh/test1.git']]])
                     container('awscli') {
                         withCredentials([file(credentialsId: 'ashutosh-aws', variable: 'awsConfig')]) {
