@@ -54,9 +54,9 @@ options {
         stage('Setup Docker Pod') {
           steps {
             container('awscli') {
-              deploy()
-
-
+              deploy(env_var1, env_domain1, env_port1)
+              deploy(env_var2, env_domain2, env_port2)
+              deploy(env_var3, env_domain3, env_port3)
             }
           }
         }
