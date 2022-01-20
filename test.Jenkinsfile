@@ -32,7 +32,7 @@ options {
       env_domain3 = "domain3"
       env_port1 = "port1"
       env_port2 = "port2"
-      env_port3 = "cron\(\* \* \* \* \*\)"
+      env_port3 = "cron\\(\\* \\* \\* \\* \\* \\)"
     }
     
     stages {
