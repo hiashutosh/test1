@@ -25,12 +25,6 @@ options {
   skipDefaultCheckout true
   checkoutToSubdirectory '/Rewardz/'
 }
-
-
-options {
-  ansiColor('xterm')
-  skipDefaultCheckout true
-}
     stages {
             stage ('init') {
                 steps {
