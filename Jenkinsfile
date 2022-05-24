@@ -29,15 +29,13 @@ options {
             stage ('init') {
                 steps {
                     sh "mkdir -p Rewardz/"
+
+                    checkout([$class: 'GitSCM', branches: [[name: "$ghprbSourceBranch"]], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'Rewardz']], userRemoteConfigs: [[url: 'https://github.com/hiashutosh/test2.git'], [url: 'https://github.com/hiashutosh/test1.git']]])
                     container('awscli') {
                         withCredentials([file(credentialsId: 'ashutosh-aws', variable: 'awsConfig')]) {
                             sh """
                             mkdir -p /root/.aws/
                             touch /root/.aws/credentials
-                            cp ${awsConfig} /root/.aws/credentials
-                            yum update -y   && yum install -y jq  && yum clean all
-                            mkdir -p Rewardz
-                            ls
                             """
                         }
                     }
@@ -48,8 +46,7 @@ options {
         stage('Setup Docker Pod') {
             steps {
                 container('awscli') {
-                    
-                    sh '''/usr/local/bin/aws ec2 describe-instance-status --instance-id i-02553566ece339587 --profile rewardz --region ap-southeast-1 | jq -r '.InstanceStatuses[] | .SystemStatus.Details[] | .Status' | sort -u                '''
+                    sh 'cat readme.md'
                 }
             }
         }
