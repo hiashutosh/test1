@@ -6,13 +6,6 @@ apiVersion: v1
 kind: Pod
 spec:
   containers:
-  - name: docker
-    image: docker:dind
-    securityContext:
-      privileged: true
-    env:
-      - name: DOCKER_TLS_CERTDIR
-        value: ""
   - name: awscli
     image: amazon/aws-cli:2.3.4
     command: ["/bin/sh"]
@@ -36,13 +29,12 @@ options {
                             sh """
                             mkdir -p /root/.aws/
                             touch /root/.aws/credentials
+
                             """
                         }
                     }
                 }
             }
-        
-        
         stage('Setup Docker Pod') {
             steps {
                 container('awscli') {
